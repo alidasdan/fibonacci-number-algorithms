@@ -32,13 +32,13 @@ they are defined by the recurrence relation 'F_n = F(n-1) + F(n-2)',
 The recurrence relation given above directly maps to arguably the
 simplest algorithm to compute the Fibonacci numbers. There are many
 other formulas to derive the Fibonacci numbers and many of them also
-map to simple algorithms. This package contains eleven such algorithms
+map to simple algorithms. This package contains twelve such algorithms
 (when this repository was first created). Each algorithm takes in an
 integer 'n' and returns the corresponding Fibonacci number 'F(n)' (or
 'F_n').
 
 For simplicity, each algorithm is named as 'fibN' where 'N' ranges
-from 1 to 11. Each algorithm 'fibN' is implemented in a separate
+from 1 to 12. Each algorithm 'fibN' is implemented in a separate
 program file 'ad_fibN.py'. These files are included as modules in
 'ad_fib.py' program for experimental comparisons.
 
@@ -58,34 +58,35 @@ These algorithms in 'ad_fibN.py' are included as modules in the main
 program 'ad_fib.py'. Its usage is shown below.
 
 ```
-" -h/--help -n/--nth=int>=0 [-a/--alg=int in [1..11]] [-c/--cmp]
+" -h/--help -n/--nth=int>=0 [-a/--alg=int in [1..12]] [-c/--cmp]
 [-r/--repeat=int>0] [-p/--print]"
 ad_fib.py
    -h/--help
    -n/--nth=int>=0            # n for F(n)
-   [-a/--alg=int in [1..11]]  # the algo id, from 1 to 11
+   [-a/--alg=int in [1..12]]  # the algo id, from 1 to 12
    [-c/--cmp]                 # compare results if not exact
    [-r/--repeat=int>0]        # num repetitions for averaging and ranking
    [-p/--print]               # print all F(n) from F(0) to F(n)
 ```
 
-Here is an example run with all the algorithms from 'fib1' to 'fib11'
+Here is an example run with all the algorithms from 'fib1' to 'fib12'
 and its output. 
 
 ```
-> ad_fib.py -n 10 -a 1,2,3,4,5,6,7,8,9,10,11 -r 1
+> ad_fib.py -n 10 -a 1,2,3,4,5,6,7,8,9,10,11,12 -r 1
 n= 10 F_n= 55
-alg=  3 exact= True  t_avr= 0.000003 t_std= 0.000000 t_lo= 0.000003 t_hi= 0.000003
+alg=  3 exact= True  t_avr= 0.000002 t_std= 0.000000 t_lo= 0.000002 t_hi= 0.000002
 alg=  5 exact= True  t_avr= 0.000004 t_std= 0.000000 t_lo= 0.000004 t_hi= 0.000004
-alg=  9 exact= True  t_avr= 0.000009 t_std= 0.000000 t_lo= 0.000009 t_hi= 0.000009
+alg= 12 exact= True  t_avr= 0.000005 t_std= 0.000000 t_lo= 0.000005 t_hi= 0.000005
+alg=  9 exact= True  t_avr= 0.000006 t_std= 0.000000 t_lo= 0.000006 t_hi= 0.000006
+alg=  2 exact= True  t_avr= 0.000010 t_std= 0.000000 t_lo= 0.000010 t_hi= 0.000010
 alg=  7 exact= True  t_avr= 0.000013 t_std= 0.000000 t_lo= 0.000013 t_hi= 0.000013
-alg=  2 exact= True  t_avr= 0.000013 t_std= 0.000000 t_lo= 0.000013 t_hi= 0.000013
-alg=  8 exact= True  t_avr= 0.000014 t_std= 0.000000 t_lo= 0.000014 t_hi= 0.000014
-alg= 11 exact= True  t_avr= 0.000016 t_std= 0.000000 t_lo= 0.000016 t_hi= 0.000016
-alg=  6 exact= True  t_avr= 0.000017 t_std= 0.000000 t_lo= 0.000017 t_hi= 0.000017
-alg= 10 exact= True  t_avr= 0.000018 t_std= 0.000000 t_lo= 0.000018 t_hi= 0.000018
-alg=  1 exact= True  t_avr= 0.000034 t_std= 0.000000 t_lo= 0.000034 t_hi= 0.000034
-alg=  4 exact= True  t_avr= 0.000052 t_std= 0.000000 t_lo= 0.000052 t_hi= 0.000052
+alg=  8 exact= True  t_avr= 0.000013 t_std= 0.000000 t_lo= 0.000013 t_hi= 0.000013
+alg= 11 exact= True  t_avr= 0.000014 t_std= 0.000000 t_lo= 0.000014 t_hi= 0.000014
+alg=  6 exact= True  t_avr= 0.000015 t_std= 0.000000 t_lo= 0.000015 t_hi= 0.000015
+alg= 10 exact= True  t_avr= 0.000015 t_std= 0.000000 t_lo= 0.000015 t_hi= 0.000015
+alg=  1 exact= True  t_avr= 0.000030 t_std= 0.000000 t_lo= 0.000030 t_hi= 0.000030
+alg=  4 exact= True  t_avr= 0.000047 t_std= 0.000000 t_lo= 0.000047 t_hi= 0.000047
 
 ```
 
