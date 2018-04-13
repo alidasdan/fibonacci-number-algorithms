@@ -24,6 +24,7 @@ import ad_fib8
 import ad_fib9
 import ad_fib10
 import ad_fib11
+import ad_fib12
 
 # generate all fib numbers from 0th to the nth using the iterative
 # linear-time algorithm.
@@ -109,7 +110,7 @@ def main():
     c = False # compare (cmp) errors of approximate results
     p = False # print all numbers from F_0 to F_n
 
-    usage = " -h/--help -n/--nth=int>=0 [-a/--alg=int in [1..11]] [-c/--cmp] [-r/--repeat=int>0] [-p/--print]"
+    usage = " -h/--help -n/--nth=int>=0 [-a/--alg=int in [1..12]] [-c/--cmp] [-r/--repeat=int>0] [-p/--print]"
 
     # get the arguments
     try:

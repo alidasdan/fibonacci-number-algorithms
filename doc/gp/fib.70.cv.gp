@@ -16,6 +16,7 @@ plot \
 'fib8.70.time' using 1:($2>0?$3/$2:$2) t 'fib8(n)' w linesp lw 2 ps 2, \
 'fib9.70.time' using 1:($2>0?$3/$2:$2) t 'fib9(n)' w linesp lw 2 ps 2, \
 'fib10.70.time' using 1:($2>0?$3/$2:$2) t 'fib10(n)' w linesp lw 2 ps 2, \
-'fib11.70.time' using 1:($2>0?$3/$2:$2) t 'fib11(n)' w linesp lw 2 ps 2
+'fib11.70.time' using 1:($2>0?$3/$2:$2) t 'fib11(n)' w linesp lw 2 ps 2, \
+'fib12.70.time' using 1:($2>0?$3/$2:$2) t 'fib12(n)' w linesp lw 2 ps 2
 quit
 
