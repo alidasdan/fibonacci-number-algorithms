@@ -58,8 +58,6 @@ These algorithms in 'ad_fibN.py' are included as modules in the main
 program 'ad_fib.py'. Its usage is shown below.
 
 ```
-" -h/--help -n/--nth=int>=0 [-a/--alg=int in [1..12]] [-c/--cmp]
-[-r/--repeat=int>0] [-p/--print]"
 ad_fib.py
    -h/--help
    -n/--nth=int>=0            # n for F(n)
