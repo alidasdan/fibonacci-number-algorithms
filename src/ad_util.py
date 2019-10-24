@@ -1,25 +1,24 @@
-#!/usr/bin/python
+#!/usr/bin/env python3
 
 import sys
-import getopt
 
 def show_usage(usage):
-    print "Usage:" + sys.argv[0] + usage
-    
-def at_exit(msg, kind = 'Error', usage = ''):
-    if msg != "" and msg != None:
-        print kind + ":", "'" + str(msg) + "'"
+    print("Usage:" + sys.argv[0] + usage)
+
+def at_exit(msg, kind='Error', usage=''):
+    if msg != "" and msg is not None:
+        print(kind + ":", "'" + str(msg) + "'")
     if usage != '':
         show_usage(usage)
     sys.exit(0)
 
 # check if n is odd or even
 def is_odd(n):
-    return (n & 1)
+    return n & 1
 
 def is_even(n):
     return not is_odd(n)
-    
+
 # given the nth fibonacci number, return the corresponding
 # negafibonacci number.
 def negafib(n, Fn):
@@ -39,7 +38,7 @@ def num_pow_iter(a, n):
 
 # multiply 2x2 matrices m1 and m2 and return the product.
 def mat_mul(m1, m2):
-    m = [[0, 0],[0, 0]]
+    m = [[0, 0], [0, 0]]
     m[0][0] = m1[0][0] * m2[0][0] + m1[0][1] * m2[1][0]
     m[0][1] = m1[0][0] * m2[0][1] + m1[0][1] * m2[1][1]
     m[1][0] = m1[1][0] * m2[0][0] + m1[1][1] * m2[1][0]
@@ -49,7 +48,7 @@ def mat_mul(m1, m2):
 # multiply 2x2 matrices m1 and m2 and return the product,
 # where m2=[[1,1],[1,0]].
 def mat_mul_opt(m1):
-    m = [[0, 0],[0, 0]]
+    m = [[0, 0], [0, 0]]
     m[0][0] = m1[0][0] + m1[0][1]
     m[0][1] = m1[0][0]
     m[1][0] = m1[1][0] + m1[1][1]
@@ -106,7 +105,7 @@ def fib_test(n):
         r = 1
     else:
         f2, f1 = 1, 0
-        for i in range(2, n + 1):
+        for _ in range(2, n + 1):
             f2, f1 = f2 + f1, f2
         r = f2
     if n0 < 0:
@@ -115,16 +114,16 @@ def fib_test(n):
 
 def main():
     hi = 10
-    
+
     for n in range(hi):
         if n % 2 == 0:
-            assert is_even(n) == True
+            assert is_even(n)
         else:
-            assert is_odd(n) == True
+            assert is_odd(n)
 
     for (n, fn) in enumerate([0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144]):
         assert fib_test(n) == fn
-            
+
     for n in range(hi):
         fn = fib_test(n)
         if is_odd(n):
@@ -134,12 +133,12 @@ def main():
 
     p = 1
     for n in range(hi):
-        num_pow_iter(2, n) == p
-        p = p >> 1
+        assert num_pow_iter(2, n) == p
+        p = p << 1
 
     iden = [[1, 0], [0, 1]]
     mfib = [[1, 1], [1, 0]]
-    
+
     m = mat_mul(iden, iden)
     assert m[0][0] == iden[0][0]
     assert m[0][1] == iden[0][1]
@@ -151,7 +150,7 @@ def main():
     assert m[0][1] == mfib[0][1]
     assert m[1][0] == mfib[1][0]
     assert m[1][1] == mfib[1][1]
-    
+
     m = mat_pow_recur(iden, hi)
     assert m[0][0] == iden[0][0]
     assert m[0][1] == iden[0][1]
@@ -178,7 +177,7 @@ def main():
     assert m1[1][0] == m2[1][0]
     assert m1[1][1] == m2[1][1]
 
-    print 'success'
+    print('success')
 
 if __name__ == '__main__':
     main()

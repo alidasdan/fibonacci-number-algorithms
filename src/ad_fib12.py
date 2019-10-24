@@ -1,10 +1,9 @@
-#!/usr/bin/python
+#!/usr/bin/env python3
 
 # author: ali dasdan
 
-import sys
 import math
-from ad_util import *
+from ad_util import negafib, fib_test, at_exit
 
 # iteratively compute the nth fibonacci number using this formula (no
 # reference found in the literature yet): F[n] = round(phi * F[n-1]).
@@ -12,8 +11,8 @@ def fib(n):
     n0, n = n, abs(n)
     try:
         sqrt_5 = math.sqrt(5)
-    except Exception, msg:
-        at_exit(msg)
+    except Exception as err:
+        at_exit(err)
     phi = float(1 + sqrt_5) / 2
     if n == 0:
         r = 0
@@ -23,9 +22,9 @@ def fib(n):
         r = 1
     else:
         r = 1
-        for i in range(3, n + 1):
+        for _ in range(3, n + 1):
             r = round(phi * r)
-        r = long(r)
+        r = int(r)
     if n0 < 0:
         return negafib(n, r)
     return r
@@ -35,7 +34,7 @@ def main():
     for n in range(hi):
         assert fib(n) == fib_test(n)
 
-    print 'success'
+    print('success')
 
 if __name__ == '__main__':
     main()

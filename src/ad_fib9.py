@@ -1,14 +1,13 @@
-#!/usr/bin/python
+#!/usr/bin/env python3
 
 # author: ali dasdan
 
-import sys
-from ad_util import *
+from ad_util import negafib, fib_test
 
 # recursively compute the nth fibonacci number using the following
 # formula: F[2k]=F[k]*[2*F[k+1]-F[k]] and F[2k+1]=F[k+1]^2+F[k]^2.
 def fib_recur(n, F):
-    if F[n] == None:
+    if F[n] is None:
         if n <= 0:
             F[n] = 0
         elif n == 1:
@@ -37,7 +36,7 @@ def main():
     for n in range(hi):
         assert fib(n) == fib_test(n)
 
-    print 'success'
+    print('success')
 
 if __name__ == '__main__':
     main()

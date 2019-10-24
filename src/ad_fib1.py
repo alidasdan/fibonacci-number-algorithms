@@ -1,19 +1,17 @@
-#!/usr/bin/python
+#!/usr/bin/env python3
 
 # author: ali dasdan
 
-import sys
-from ad_util import *
+from ad_util import negafib, fib_test
 
 # compute the nth fibonacci number using recursion w/o memoization
 # F[0]=0; F[1]=1; F[n]=F[n-1]+F[n-2].
 def fib_recur(n):
     if n == 0:
         return 0
-    elif n == 1:
+    if n == 1:
         return 1
-    else:
-        return fib_recur(n - 1) + fib_recur(n - 2)
+    return fib_recur(n - 1) + fib_recur(n - 2)
 
 def fib(n):
     n0, n = n, abs(n)
@@ -27,7 +25,7 @@ def main():
     for n in range(hi):
         assert fib(n) == fib_test(n)
 
-    print 'success'
+    print('success')
 
 if __name__ == '__main__':
     main()

@@ -1,9 +1,8 @@
-#!/usr/bin/python
+#!/usr/bin/env python3
 
 # author: ali dasdan
 
-import sys
-from ad_util import *
+from ad_util import negafib, fib_test, mat_pow_opt_recur
 
 # compute the nth fibonacci number using the 2x2 matrix based formula
 # using repeated squaring (recursively implemented). [[1,1], [1,0]]^n
@@ -24,7 +23,7 @@ def main():
     for n in range(hi):
         assert fib(n) == fib_test(n)
 
-    print 'success'
+    print('success')
 
 if __name__ == '__main__':
     main()

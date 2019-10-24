@@ -1,9 +1,8 @@
-#!/usr/bin/python
+#!/usr/bin/env python3
 
 # author: ali dasdan
 
-import sys
-from ad_util import *
+from ad_util import negafib, fib_test
 
 # iteratively compute the nth fibonacci number using the following
 # formula: F[2k]=F[k+1]^2-F[k-1]^2 and F[2k+1]=F[k+1]^2+F[k]^2.
@@ -11,7 +10,7 @@ def fib(n):
     n0, n = n, abs(n)
     F = {}
 
-    # find indexes that need F values     
+    # find indexes that need F values
     qinx = []  # queue of indexes
     qinx.append(n)
     F[n] = -1  # -1 to mark such values
@@ -29,7 +28,7 @@ def fib(n):
 
     # set base values
     F[0], F[1], F[2] = 0, 1, 1
-        
+
     # fill the indexes that need values
     keys_sorted = sorted(F.keys())
     for k in keys_sorted[3:]:
@@ -39,7 +38,7 @@ def fib(n):
             F[k] = f3 * f3 - f1 * f1
         else:
             F[k] = f3 * f3 + f2 * f2
-            
+
     r = F[n]
     if n0 < 0:
         return negafib(n, r)
@@ -50,7 +49,7 @@ def main():
     for n in range(hi):
         assert fib(n) == fib_test(n)
 
-    print 'success'
+    print('success')
 
 if __name__ == '__main__':
     main()
