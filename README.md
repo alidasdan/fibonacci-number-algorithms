@@ -48,11 +48,11 @@ information about these algorithms.
 ## HOW TO RUN
 
 This package contains programs written in the Python programming
-language. Each 'ad_fibN.py' can be run by simply typing its name
-without any arguments. Each 'ad_fibN.py' tests its algorithm against a
-test algorithm from 'ad_util.py' and prints 'success' if the test
-succeeds. If the test fails, there will be an assertion failure
-message.
+language (Python 3.7.3+). Each 'ad_fibN.py' can be run by simply
+typing its name without any arguments. Each 'ad_fibN.py' tests its
+algorithm against a test algorithm from 'ad_util.py' and prints
+'success' if the test succeeds. If the test fails, there will be an
+assertion failure message.
 
 These algorithms in 'ad_fibN.py' are included as modules in the main
 program 'ad_fib.py'. Its usage is shown below.
@@ -101,7 +101,7 @@ bounds of the confidence interval around the average runtime.
 ## HOW TO TEST
 
 Type 'utest.sh'. Since each algorithm 'fibN' implemented in
-'ad_fibN.py' tests itself. It should 'success' for each algorithm.
+'ad_fibN.py' tests itself. It should 'success' for test, one per line.
 
 ## DOC/ DIRECTORY
 
@@ -122,3 +122,6 @@ generate the plots under 'png2/';
 
 Also see the document 'fib_algos.pdf' for the references to the source
 of each algorithm.
+
+Please note that the doc version contains Python 2.7.* version of the code whereas 
+the 'src/' directory contains Python 3.7.3+ version of the code.
