@@ -9,9 +9,9 @@
 
 import sys
 import getopt
-import math
+from math import sqrt
 import importlib
-from time import process_time
+from time import perf_counter
 
 from ad_util import negafib, at_exit
 import ad_fib3
@@ -42,7 +42,7 @@ def get_confint(avr, std, n, is_pos=True, fmt_str='.6f'):
     k = 0.0
     if n > 0:
         try:
-            k = 1.96 * math.sqrt(n)
+            k = 1.96 * sqrt(n)
         except Exception as err:
             at_exit(err)
     lo = avr - k * std
@@ -70,33 +70,35 @@ def compare_rel(a, b, do_fmt=True, fmt_str='.6f'):
 
 # run mod.fib(n) nrepeats times, also measure its runtime in seconds.
 def run(mod, n, nrepeats):
+    if nrepeats <= 0:
+        nrepeats = 1
     sum1 = 0.0
     sum2 = 0.0
     for _ in range(nrepeats):
-        t_start = process_time()
+        t_start = perf_counter()
         try:
             r = mod.fib(n)
         except Exception as err:
             at_exit(err)
-        t = process_time() - t_start
+        t = perf_counter() - t_start
         sum1 += t
         sum2 += t * t
     avr = float(sum1) / nrepeats
-    try:
-        std = math.sqrt(sum2 / nrepeats - avr * avr)
-    except Exception as err:
-        at_exit(err)
+    std = sqrt(abs(sum2 / nrepeats - avr * avr))
     return r, avr, std
 
 ### section: main
 
 # generate all the fib numbers from the 1st to the nth
 def gen_all_fib_nums_upto(n):
-    start_all = process_time()
-    h = fib_all(n)
-    elapsed_all = process_time() - start_all
+    start_all = perf_counter()
+    try:
+        h = fib_all(n)
+    except Exception as err:
+        at_exit(err)
+    elapsed_all = perf_counter() - start_all
     print(h)
-    print('time elapsed', elapsed_all)
+    print('time elapsed in s', elapsed_all)
 
 # run the other requested algos with the given ids. the ids are used
 # to construct the algo name, which in turn is used to construct the

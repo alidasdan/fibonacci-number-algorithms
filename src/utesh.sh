@@ -1,13 +1,18 @@
 #!/bin/bash
 
-for i in {1..12}; do
+cnt=`ls -l ad_fib?*.py|wc -l`
+
+for ((i=1;i<=$cnt;++i)); do
     echo -n "test ad_fib$i.py "
     ./ad_fib$i.py
 done
 
-for i in {1..6}; do
+for ((i=1;i<=$cnt;++i)); do
+    if [[ $(($i % 2)) -eq 0 ]]; then
+        continue
+    fi
     echo -n "find ad_fib$i in ad_fib.py output "
-    c=$(./ad_fib.py -n 10 -a 1,2,3,4,5,6 | grep -c "alg="$i" ")
+    c=$(./ad_fib.py -n 10 -a $i | grep -c "alg="$i" ")
     if [[ $c -eq 1 ]]; then
         echo 'success'
     fi
@@ -16,9 +21,12 @@ for i in {1..6}; do
     fi
 done
 
-for i in {1..6}; do
+for ((i=1;i<=$cnt;++i)); do
+    if [[ $(($i % 2)) -eq 1 ]]; then
+        continue
+    fi
     echo -n "do not find ad_fib$i in ad_fib.py output "
-    c=$(./ad_fib.py -n 10 -a 7,8,9,10,11,12 | grep -c "alg="$i" ")
+    c=$(./ad_fib.py -n 10 -a $(($i+1)) | grep -c "alg="$i" ")
     if [[ $c -eq 1 ]]; then
         echo 'failure'
     fi
