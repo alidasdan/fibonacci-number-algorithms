@@ -6,7 +6,7 @@ from ad_util import negafib, fib_test
 
 # compute the nth fibonacci number using iteration in constant space
 # F[0]=0; F[1]=1; F[n]=F[n-1]+F[n-2].
-def fib(n):
+def fib(n:int) -> int:
     n0, n = n, abs(n)
     if n == 0:
         r = 0

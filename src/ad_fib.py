@@ -12,13 +12,15 @@ import getopt
 from math import sqrt
 import importlib
 from time import perf_counter
+from typing import List, Union
+from types import ModuleType
 
 from ad_util import negafib, at_exit
 import ad_fib3
 
 # generate all fib numbers from 0th to the nth using the iterative
 # linear-time algorithm.
-def fib_all(n):
+def fib_all(n:int) -> List[int]:
     n0, n = n, abs(n)
     if n == 0:
         F = [0]
@@ -38,7 +40,7 @@ def fib_all(n):
 ### section: results production
 
 # get conf interval
-def get_confint(avr, std, n, is_pos=True, fmt_str='.6f'):
+def get_confint(avr:float, std:float, n:int, is_pos:bool=True, fmt_str:str='.6f') -> List[str]:
     k = 0.0
     if n > 0:
         try:
@@ -52,13 +54,13 @@ def get_confint(avr, std, n, is_pos=True, fmt_str='.6f'):
     return format(lo, fmt_str), format(hi, fmt_str)
 
 # compare results in absolute
-def compare_abs(a, b, do_fmt=True, fmt_str='.6f'):
+def compare_abs(a:float, b:float, do_fmt:bool=True, fmt_str:str='.6f') -> float:
     if do_fmt:
         return format(a - b, fmt_str)
     return a - b
 
 # compare results in relative
-def compare_rel(a, b, do_fmt=True, fmt_str='.6f'):
+def compare_rel(a:float, b:float, do_fmt:bool=True, fmt_str:str='.6f') -> float:
     diff = compare_abs(a, b, False)
     if b == 0:
         if do_fmt:
@@ -69,7 +71,7 @@ def compare_rel(a, b, do_fmt=True, fmt_str='.6f'):
     return float(abs(diff)) / b
 
 # run mod.fib(n) nrepeats times, also measure its runtime in seconds.
-def run(mod, n, nrepeats):
+def run(mod:ModuleType, n:int, nrepeats:int) -> List[Union[int, float]]:
     if nrepeats <= 0:
         nrepeats = 1
     sum1 = 0.0
@@ -90,7 +92,7 @@ def run(mod, n, nrepeats):
 ### section: main
 
 # generate all the fib numbers from the 1st to the nth
-def gen_all_fib_nums_upto(n):
+def gen_all_fib_nums_upto(n:int) -> None:
     start_all = perf_counter()
     try:
         h = fib_all(n)
@@ -103,7 +105,7 @@ def gen_all_fib_nums_upto(n):
 # run the other requested algos with the given ids. the ids are used
 # to construct the algo name, which in turn is used to construct the
 # module name in runtime.
-def run_requested_algos(n, alg_ids, nrepeats):
+def run_requested_algos(n:int, alg_ids:List[int], nrepeats:int) -> List[int]:
     results = []
     r_n = None
     for alg_id in alg_ids:
@@ -116,7 +118,7 @@ def run_requested_algos(n, alg_ids, nrepeats):
     return sorted_results
 
 # compare and print the results in the increasing runtime order
-def cmp_and_print_results(n, c, r_cmp, sorted_results):
+def cmp_and_print_results(n:int, c:bool, r_cmp:int, sorted_results:List[int]) -> None:
     print('n=', n, 'F_n=', r_cmp)
     for (alg, r_n, avr_n, std_n) in sorted_results:
         lo_n, hi_n = get_confint(avr_n, std_n, n)

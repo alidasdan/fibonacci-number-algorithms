@@ -8,7 +8,7 @@ from ad_util import negafib, fib_test
 # https://blog.paulhankin.net/fibonacci/ . The sequence is 0, 1, 2, 3,
 # 5, 8, ..., i.e., correct after 2. the formula is: (4 << n*(3+n)) //
 # ((4 << 2*n) - (2 << n) - 1) & ((2 << n) - 1)
-def fib(n):
+def fib(n:int) -> int:
     n0, n = n, abs(n)
     num = (4 << n * (3 + n))
     denom = ((4 << 2 * n) - (2 << n) - 1)

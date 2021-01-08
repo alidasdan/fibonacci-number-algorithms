@@ -2,11 +2,12 @@
 
 # author: ali dasdan
 
+from typing import List
 from ad_util import negafib, fib_test
 
 # recursively compute the nth fibonacci number using the following
 # formula: F[2k]=F[k]*[2*F[k+1]-F[k]] and F[2k+1]=F[k+1]^2+F[k]^2.
-def fib_recur(n, F):
+def fib_recur(n:int, F:List[int]) -> List[int]:
     if F[n] is None:
         if n <= 0:
             F[n] = 0
@@ -24,7 +25,7 @@ def fib_recur(n, F):
                 F[n] = f2 * f2 + f1 * f1
     return F[n]
 
-def fib(n):
+def fib(n:int) -> int:
     n0, n = n, abs(n)
     r = fib_recur(n, [None] * (n + 1))
     if n0 < 0:

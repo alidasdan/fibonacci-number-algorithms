@@ -7,7 +7,7 @@ from ad_util import negafib, fib_test, mat_pow_opt_iter
 # compute the nth fibonacci number using the 2x2 matrix based formula
 # using repeated squaring (iteratively implemented). [[1,1], [1,0]]^n
 # = [[F[n+1],F[n]], [F[n],F[n-1]]].
-def fib(n):
+def fib(n:int) -> int:
     n0, n = n, abs(n)
     if n == 0:
         r = 0

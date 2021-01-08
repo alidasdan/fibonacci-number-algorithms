@@ -2,11 +2,12 @@
 
 # author: ali dasdan
 
+from typing import List
 from ad_util import negafib, fib_test
 
 # compute the nth fibonacci number using recursion w/ memoization:
 # F[0]=0; F[1]=1; F[n]=F[n-1]+F[n-2].
-def fib_recur(n, F):
+def fib_recur(n:int, F:List[int]) -> List[int]:
     if F[n] is None:
         if n == 0:
             F[n] = 0
@@ -16,7 +17,7 @@ def fib_recur(n, F):
             F[n] = fib_recur(n - 1, F) + fib_recur(n - 2, F)
     return F[n]
 
-def fib(n):
+def fib(n:int) -> int:
     n0, n = n, abs(n)
     r = fib_recur(n, [None] * (n + 1))
     if n0 < 0:

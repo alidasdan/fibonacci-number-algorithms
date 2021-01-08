@@ -8,7 +8,7 @@ from ad_util import negafib, fib_test, at_exit
 # compute the nth fibonacci number using golden ratio based closed
 # formula (binet's formula): F[n] = round((phi^n - psi^n) / sqrt(5));
 # note psi = -1 / phi.
-def fib(n):
+def fib(n:int) -> int:
     n0, n = n, abs(n)
     if n == 0:
         r = 0

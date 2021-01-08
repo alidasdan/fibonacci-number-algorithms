@@ -7,7 +7,7 @@ from ad_util import negafib, fib_test, at_exit
 
 # iteratively compute the nth fibonacci number using this formula (no
 # reference found in the literature yet): F[n] = round(phi * F[n-1]).
-def fib(n):
+def fib(n:int) -> int:
     n0, n = n, abs(n)
     try:
         sqrt_5 = math.sqrt(5)

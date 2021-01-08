@@ -6,7 +6,7 @@ from ad_util import negafib, fib_test
 
 # iteratively compute the nth fibonacci number using the following
 # formula: F[2k]=F[k+1]^2-F[k-1]^2 and F[2k+1]=F[k+1]^2+F[k]^2.
-def fib(n):
+def fib(n:int) -> int:
     n0, n = n, abs(n)
     F = {}
 
