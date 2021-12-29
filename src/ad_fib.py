@@ -125,11 +125,11 @@ def cmp_and_print_results(n:int, c:bool, r_cmp:int, sorted_results:List[int]) ->
         is_exact = 'False'
         if r_n == r_cmp:
             is_exact = 'True '
-        print("alg={} exact={} t_avr={:.6f} t_std={:.6f} t_lo={} t_hi={}".format(alg, is_exact, avr_n, std_n, lo_n, hi_n))
+        print("alg= {} exact= {} t_avr= {:.6f} t_std= {:.6f} t_lo= {} t_hi= {}".format(alg, is_exact, avr_n, std_n, lo_n, hi_n))
         if c and (is_exact == 'False'):
             diff = compare_abs(r_n, r_cmp, False)
             ratio = compare_rel(r_n, r_cmp, True, '.6e')
-            print("alg={:2d} exact={} r_n-r_3={:d} r_n/r_3={:.6f}".format(alg, is_exact, diff, ratio))
+            print("alg= {:2d} exact= {} r_n-r_3= {:d} r_n/r_3= {:.6f}".format(alg, is_exact, diff, ratio))
 
 def main():
     n = None # n of F_n
@@ -140,7 +140,7 @@ def main():
 
     usage = " -h/--help"
     usage += " -n/--nth=int>=0"
-    usage += " [-a/--alg=int in [1..12]]"
+    usage += " [-a/--alg=int in [1..14]]"
     usage += " [-c/--cmp]"
     usage += " [-r/--repeat=int>0]"
     usage += " [-p/--print]"
