@@ -12,7 +12,7 @@ done
 # check for the correct algo call
 for ((i=1;i<=$cnt;i=i+2)); do
     echo -n "find ad_fib$i in ad_fib.py output "
-    c=$(./ad_fib.py -n 10 -a $i | grep -c "alg="$i" ")
+    c=$(./ad_fib.py -n 10 -a $i | grep -c "alg= "$i" ")
     if [[ $c -eq 1 ]]; then
         echo 'success'
     fi
@@ -24,7 +24,7 @@ done
 # check for the correct algo call
 for ((i=2;i<=$cnt;i=i+2)); do
     echo -n "do not find ad_fib$i in ad_fib.py output "
-    c=$(./ad_fib.py -n 10 -a $(($i-1)) | grep -c "alg="$i" ")
+    c=$(./ad_fib.py -n 10 -a $(($i-1)) | grep -c "alg= "$i" ")
     if [[ $c -eq 1 ]]; then
         echo 'failure'
     fi
