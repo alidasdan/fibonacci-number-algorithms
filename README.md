@@ -32,7 +32,7 @@ they are defined by the recurrence relation 'F_n = F(n-1) + F(n-2)',
 The recurrence relation given above directly maps to arguably the
 simplest algorithm to compute the Fibonacci numbers. There are many
 other formulas to derive the Fibonacci numbers and many of them also
-map to simple algorithms. This package contains 14 such algorithms
+map to simple algorithms. This package contains 15+ such algorithms
 (when this repository was first created, the number was 12). Each 
 algorithm takes in an integer 'n' and returns the corresponding 
 Fibonacci number 'F(n)' (or 'F_n').
