@@ -136,26 +136,12 @@ study, built from 'arxiv/fib.tex';
 the experimental study reported in the 'fib_algos.pdf' paper;
 - 'results.how.plots.sh' is the bash file to generate the plots for
 the experimental study reported in the 'fib_algos.pdf' paper;
-- 'png2/' is the plots from the experimental study reported in the 'fib_algos.pdf' paper;
+- 'png/' is the plots from the experimental study reported in the 'fib_algos.pdf' paper;
 - 'gp/' is the directory that contains the 'gnuplot' command files to
-generate the plots under 'png2/'.
+generate the plots under 'png/'.
 
 Running 'results.how.algos.sh' creates a 'results/' directory with the
 measurements it collects. That directory is not checked in.
 
 Also see the document 'fib_algos.pdf' for the references to the source
 of each algorithm.
-
-## ARXIV/ DIRECTORY
-
-The 'arxiv/' directory contains the LaTeX source of the paper, as
-uploaded to arXiv, together with the images it includes:
-- 'fib.tex' is the paper source. The algorithms in it are written as
-LaTeX pseudocode using the 'algorithm' and 'algpseudocode' packages,
-and they follow the Python 3 code under 'src/'. Build the paper with
-'latexmk -pdf fib.tex';
-- the 'fib_*.png' files are the plots of the experimental study;
-- the remaining '.png' files are the images of each algorithm as
-implemented in Python 2.7. They are kept for reference only: the paper
-no longer includes them, since each algorithm is now typeset as
-pseudocode directly in 'fib.tex'.
