@@ -3,16 +3,16 @@
 # author: ali dasdan
 
 import math
-from ad_util import negafib, fib_test, at_exit
+from ad_util import negafib, fib_test
 
-# iteratively compute the nth fibonacci number using this formula (no
-# reference found in the literature yet): F[n] = round(phi * F[n-1]).
+# iteratively compute the nth fibonacci number using the formula
+# F[n] = round(phi * F[n-1]), valid for n >= 3. it is formula 64 in
+# vajda and formula 73 in dunlap; see r. knott's fibonacci and golden
+# ratio formulae. this is exact only up to n = 78; past that the
+# rounding error accumulated over the iterations takes over.
 def fib(n:int) -> int:
     n0, n = n, abs(n)
-    try:
-        sqrt_5 = math.sqrt(5)
-    except Exception as err:
-        at_exit(err)
+    sqrt_5 = math.sqrt(5)
     phi = float(1 + sqrt_5) / 2
     if n == 0:
         r = 0

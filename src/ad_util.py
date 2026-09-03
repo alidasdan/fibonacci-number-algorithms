@@ -1,30 +1,49 @@
 #!/usr/bin/env python3
 
+# author: ali dasdan
+
+import glob
+import os
+import re
 import sys
-from typing import List
+from typing import List, NoReturn, Union
 
 Matrix = List[List[int]]
 
 def show_usage(usage:str) -> None:
     print("Usage:" + sys.argv[0] + usage)
 
-def at_exit(msg:str, kind:str='Error', usage:str='') -> None:
+# print the message and exit with a failure status. errors must not
+# report success to the caller, so the exit status is nonzero.
+def at_exit(msg:Union[str, BaseException], kind:str='Error', usage:str='') -> NoReturn:
     if msg != "" and msg is not None:
         print(kind + ":", "'" + str(msg) + "'")
     if usage != '':
         show_usage(usage)
-    sys.exit(0)
+    sys.exit(1)
+
+# return the sorted ids of the algorithms implemented in the
+# ad_fibN.py files next to this module. the ids are read from the file
+# names so that they never have to be kept in sync by hand.
+def alg_ids() -> List[int]:
+    here = os.path.dirname(os.path.abspath(__file__))
+    ids = []
+    for path in glob.glob(os.path.join(here, 'ad_fib*.py')):
+        m = re.match(r'ad_fib(\d+)\.py$', os.path.basename(path))
+        if m is not None:
+            ids.append(int(m.group(1)))
+    return sorted(ids)
 
 # check if n is odd or even
 def is_odd(n:int) -> int:
     return n & 1
 
-def is_even(n:int) -> int:
+def is_even(n:int) -> bool:
     return not is_odd(n)
 
 # given the nth fibonacci number, return the corresponding
 # negafibonacci number.
-def negafib(n:int, Fn:List[int]) -> List[int]:
+def negafib(n:int, Fn:int) -> int:
     if is_odd(n + 1):
         return -Fn
     return Fn
@@ -64,7 +83,7 @@ def mat_pow_recur(m:Matrix, n:int) -> Matrix:
     if n > 1:
         r = mat_pow_recur(m, n >> 1)
         r = mat_mul(r, r)
-    if n % 2 == 1:
+    if is_odd(n):
         r = mat_mul(r, m)
     return r
 
@@ -74,7 +93,7 @@ def mat_pow_opt_recur(n:int) -> Matrix:
     if n > 1:
         r = mat_pow_opt_recur(n >> 1)
         r = mat_mul(r, r)
-    if n % 2 == 1:
+    if is_odd(n):
         r = mat_mul_opt(r)
     return r
 
@@ -99,7 +118,8 @@ def mat_pow_opt_iter(n:int) -> Matrix:
     return r
 
 # compute the nth Fibonacci number using the simple, linear time and
-# constant space algorithm.
+# constant space algorithm. this is the oracle every ad_fibN.py checks
+# itself against, so main() below anchors it to published values.
 def fib_test(n:int) -> int:
     n0, n = n, abs(n)
     if n == 0:
@@ -124,8 +144,17 @@ def main():
         else:
             assert is_odd(n)
 
+    # anchor the oracle to published values. every other test in this
+    # package is checked against fib_test, so this is the one place
+    # where correctness comes from outside the package.
     for (n, fn) in enumerate([0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144]):
         assert fib_test(n) == fn
+
+    # anchor it at large n and on the negative branch as well, since
+    # the table above only covers a short prefix of the sequence.
+    assert fib_test(100) == 354224848179261915075
+    assert fib_test(-10) == -55
+    assert fib_test(-11) == 89
 
     for n in range(hi):
         fn = fib_test(n)
@@ -133,6 +162,9 @@ def main():
             assert negafib(n, fn) == fn
         else:
             assert negafib(n, fn) == -fn
+
+    assert alg_ids() == sorted(alg_ids())
+    assert len(alg_ids()) > 0
 
     p = 1
     for n in range(hi):

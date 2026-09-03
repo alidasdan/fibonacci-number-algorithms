@@ -7,7 +7,7 @@ from ad_util import negafib, fib_test
 
 # compute the nth fibonacci number using recursion w/ memoization:
 # F[0]=0; F[1]=1; F[n]=F[n-1]+F[n-2].
-def fib_recur(n:int, F:List[int]) -> List[int]:
+def fib_recur(n:int, F:List[int]) -> int:
     if F[n] is None:
         if n == 0:
             F[n] = 0

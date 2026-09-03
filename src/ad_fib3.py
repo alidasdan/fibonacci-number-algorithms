@@ -2,7 +2,7 @@
 
 # author: ali dasdan
 
-from ad_util import negafib, fib_test
+from ad_util import negafib
 
 # compute the nth fibonacci number using iteration in constant space
 # F[0]=0; F[1]=1; F[n]=F[n-1]+F[n-2].
@@ -22,9 +22,15 @@ def fib(n:int) -> int:
     return r
 
 def main():
-    hi = 10
-    for n in range(hi):
-        assert fib(n) == fib_test(n)
+    # this is the same algorithm as the fib_test oracle in ad_util, so
+    # checking it against that oracle would prove nothing. it is
+    # checked against published values instead.
+    for (n, fn) in enumerate([0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144]):
+        assert fib(n) == fn
+
+    assert fib(100) == 354224848179261915075
+    assert fib(-10) == -55
+    assert fib(-11) == 89
 
     print('success')
 

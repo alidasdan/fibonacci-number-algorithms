@@ -13,7 +13,6 @@ def fib(n:int) -> int:
     else:
         m = [[1, 0], [0, 1]]
         for _ in range(1, n):
-            #m = mat_mul(m, [[1, 1], [1, 0]])
             m = mat_mul_opt(m)
         r = m[0][0]
     if n0 < 0:

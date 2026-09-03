@@ -2,8 +2,7 @@
 
 # author: ali dasdan
 
-from math import sqrt, pow
-from ad_util import negafib, fib_test, at_exit
+from ad_util import negafib, fib_test
 
 # compute the nth fibonacci number using the formula presented at
 # https://orlp.net/blog/magical-fibonacci-formulae/.
